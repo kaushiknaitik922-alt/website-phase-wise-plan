@@ -11,3 +11,7 @@ next-env.d.ts
 .DS_Store
 npm-debug.log*
 media/
+
+# local dev helpers (not part of the site)
+shot.mjs
+restart-server.sh
