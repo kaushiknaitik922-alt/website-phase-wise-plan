@@ -7,8 +7,16 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
+import { Enquiries } from './collections/Enquiries'
 import { Media } from './collections/Media'
+import { Products } from './collections/Products'
 import { Users } from './collections/Users'
+import { AboutPage } from './globals/AboutPage'
+import { ContactPage } from './globals/ContactPage'
+import { HomePage } from './globals/HomePage'
+import { ProcessPage } from './globals/ProcessPage'
+import { SiteSettings } from './globals/SiteSettings'
+import { WorkingHours } from './globals/WorkingHours'
 import { env, hasBlobStorage, serverUrl } from './config/env'
 import { site } from './config/site'
 
@@ -44,8 +52,8 @@ export default buildConfig({
       robots: 'noindex, nofollow',
     },
   },
-  collections: [Users, Media],
-  globals: [],
+  collections: [Users, Media, Products, Enquiries],
+  globals: [SiteSettings, WorkingHours, HomePage, AboutPage, ProcessPage, ContactPage],
   editor: lexicalEditor(),
   secret,
   db: postgresAdapter({
