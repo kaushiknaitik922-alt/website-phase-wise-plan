@@ -6,6 +6,8 @@ import { ProcessStrip } from '@/components/sections/ProcessStrip'
 import { ProductGrid } from '@/components/sections/ProductGrid'
 import { SupplyArea } from '@/components/sections/SupplyArea'
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { organizationJsonLd } from '@/lib/seo'
 import { getFeaturedProducts, getHomePage, getSiteSettings } from '@/server/queries'
 
 export default async function HomePage() {
@@ -17,6 +19,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={organizationJsonLd(settings)} />
       <Hero hero={home.hero} />
       <FeatureCards cards={home.featureCards} />
       <AboutSnippet content={home.aboutSnippet} experienceYears={settings.experienceYears} />

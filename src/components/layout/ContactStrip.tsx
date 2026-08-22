@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ButtonLink } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
-import { formatPhone, telHref } from '@/lib/utils'
+import { cn, formatPhone, telHref } from '@/lib/utils'
 import type { SiteSettingsView } from '@/types/content'
 
 /** Logo, three contact blocks and the quote button. */
@@ -57,7 +57,16 @@ export function ContactStrip({ settings }: { settings: SiteSettingsView }) {
 
       <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center lg:gap-8">
         {blocks.map((block) => (
-          <a key={block.label} href={block.href} className="group flex items-start gap-3">
+          <a
+            key={block.label}
+            href={block.href}
+            className={cn(
+              'group flex items-start gap-3',
+              // On phones the header is already tall; the address is a tap away
+              // in the footer and on the contact page.
+              block.icon === 'pin' && 'hidden sm:flex',
+            )}
+          >
             <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-navy transition-colors group-hover:bg-navy group-hover:text-white">
               <Icon name={block.icon} className="h-4 w-4" />
             </span>

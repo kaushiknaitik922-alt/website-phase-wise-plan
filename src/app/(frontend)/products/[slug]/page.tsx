@@ -12,10 +12,11 @@ import { PageHero } from '@/components/sections/PageHero'
 import { ButtonLink } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
+import { JsonLd } from '@/components/ui/JsonLd'
 import { RichText } from '@/components/ui/RichText'
 import { defaultHomePage } from '@/config/content'
 import { richTextToPlainText } from '@/lib/lexical'
-import { buildMetadata } from '@/lib/seo'
+import { breadcrumbJsonLd, buildMetadata, productJsonLd } from '@/lib/seo'
 import { formatPhone, telHref } from '@/lib/utils'
 import { productEnquiryMessage, whatsappHref } from '@/lib/whatsapp'
 import {
@@ -58,6 +59,22 @@ export default async function ProductPage({ params }: Params) {
 
   return (
     <>
+      <JsonLd
+        data={productJsonLd({
+          title: product.title,
+          description: product.shortDescription || richTextToPlainText(product.overview, 300),
+          slug: product.slug,
+          image: product.heroImage?.url,
+          settings,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Products', path: '/products' },
+          { name: product.title, path: `/products/${product.slug}` },
+        ])}
+      />
       <PageHero
         hero={{
           kicker: 'Product',
