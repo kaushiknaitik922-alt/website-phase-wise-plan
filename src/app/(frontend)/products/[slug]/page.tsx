@@ -91,6 +91,21 @@ export default async function ProductPage({ params }: Params) {
       <section className="py-16 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] lg:gap-16">
           <div className="space-y-12">
+            {product.heroImage ? (
+              // Fixed frame so the page holds its shape whatever the
+              // photograph's own proportions are.
+              <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-line shadow-card">
+                <Image
+                  src={product.heroImage.url}
+                  alt={product.heroImage.alt || product.title}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 62vw, 100vw"
+                  className="object-cover"
+                />
+              </figure>
+            ) : null}
+
             <div>
               <h2 className="font-display text-xl font-bold tracking-tight text-navy">Overview</h2>
               <span className="mt-3 block h-1 w-12 rounded-full bg-green" />

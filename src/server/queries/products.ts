@@ -2,6 +2,7 @@ import { cache } from 'react'
 
 import { defaultProducts } from '@/config/content'
 import { fromCms } from '@/server/payload'
+import { withLocalPhotos } from '@/server/product-photos'
 import type { ProductView } from '@/types/content'
 
 import { toImage, toSeo } from './mappers'
@@ -58,10 +59,14 @@ export const getProducts = cache(
           overrideAccess: false,
         })
 
-        if (result.docs.length === 0) return defaultProducts
-        return result.docs.map((doc) => toProduct(doc as unknown as Record<string, unknown>)).sort(byOrder)
+        if (result.docs.length === 0) return withLocalPhotos(defaultProducts)
+        return withLocalPhotos(
+          result.docs
+            .map((doc) => toProduct(doc as unknown as Record<string, unknown>))
+            .sort(byOrder),
+        )
       },
-      defaultProducts,
+      withLocalPhotos(defaultProducts),
     ),
 )
 
@@ -72,7 +77,9 @@ export const getFeaturedProducts = cache(async (): Promise<ProductView[]> => {
 })
 
 export const getProductBySlug = cache(async (slug: string): Promise<ProductView | null> => {
-  const fallback = defaultProducts.find((product) => product.slug === slug) ?? null
+  const [fallback = null] = withLocalPhotos(
+    defaultProducts.filter((product) => product.slug === slug),
+  )
 
   return fromCms(
     `product:${slug}`,
@@ -86,7 +93,9 @@ export const getProductBySlug = cache(async (slug: string): Promise<ProductView 
       })
 
       const doc = result.docs[0]
-      return doc ? toProduct(doc as unknown as Record<string, unknown>) : fallback
+      if (!doc) return fallback
+      const [product] = withLocalPhotos([toProduct(doc as unknown as Record<string, unknown>)])
+      return product ?? fallback
     },
     fallback,
   )
