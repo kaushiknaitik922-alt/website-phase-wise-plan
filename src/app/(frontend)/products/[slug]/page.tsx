@@ -17,8 +17,9 @@ import { RichText } from '@/components/ui/RichText'
 import { defaultHomePage } from '@/config/content'
 import { richTextToPlainText } from '@/lib/lexical'
 import { breadcrumbJsonLd, buildMetadata, productJsonLd } from '@/lib/seo'
-import { formatPhone, telHref } from '@/lib/utils'
+import { cn, formatPhone, telHref } from '@/lib/utils'
 import { productEnquiryMessage, whatsappHref } from '@/lib/whatsapp'
+import { isPortrait } from '@/server/product-photos'
 import {
   getProductBySlug,
   getProducts,
@@ -93,15 +94,23 @@ export default async function ProductPage({ params }: Params) {
           <div className="space-y-12">
             {product.heroImage ? (
               // Fixed frame so the page holds its shape whatever the
-              // photograph's own proportions are.
-              <figure className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-line shadow-card">
+              // photograph's own proportions are. A tall product is shown
+              // whole inside it rather than cropped to a landscape band.
+              <figure
+                className={cn(
+                  'relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-line shadow-card',
+                  isPortrait(product.heroImage) && 'bg-surface',
+                )}
+              >
                 <Image
                   src={product.heroImage.url}
                   alt={product.heroImage.alt || product.title}
                   fill
                   priority
                   sizes="(min-width: 1024px) 62vw, 100vw"
-                  className="object-cover"
+                  className={cn(
+                    isPortrait(product.heroImage) ? 'object-contain p-4' : 'object-cover',
+                  )}
                 />
               </figure>
             ) : null}

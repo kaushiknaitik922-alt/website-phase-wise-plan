@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import { Icon } from '@/components/ui/Icon'
 import { ColourSwatches } from '@/components/product/ColourSwatches'
+import { cn } from '@/lib/utils'
+import { isPortrait } from '@/server/product-photos'
 import type { ProductView } from '@/types/content'
 
 export function ProductCard({ product }: { product: ProductView }) {
@@ -17,7 +19,11 @@ export function ProductCard({ product }: { product: ProductView }) {
             alt={product.heroImage.alt || product.title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            className={cn(
+              'transition-transform duration-300 group-hover:scale-[1.03]',
+              // A tall product would lose its top and bottom to a landscape crop.
+              isPortrait(product.heroImage) ? 'object-contain p-3' : 'object-cover',
+            )}
           />
         ) : (
           // No photographs yet — the colour range stands in for the product image.

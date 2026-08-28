@@ -59,14 +59,14 @@ export const getProducts = cache(
           overrideAccess: false,
         })
 
-        if (result.docs.length === 0) return withLocalPhotos(defaultProducts)
-        return withLocalPhotos(
+        if (result.docs.length === 0) return await withLocalPhotos(defaultProducts)
+        return await withLocalPhotos(
           result.docs
             .map((doc) => toProduct(doc as unknown as Record<string, unknown>))
             .sort(byOrder),
         )
       },
-      withLocalPhotos(defaultProducts),
+      await withLocalPhotos(defaultProducts),
     ),
 )
 
@@ -77,7 +77,7 @@ export const getFeaturedProducts = cache(async (): Promise<ProductView[]> => {
 })
 
 export const getProductBySlug = cache(async (slug: string): Promise<ProductView | null> => {
-  const [fallback = null] = withLocalPhotos(
+  const [fallback = null] = await withLocalPhotos(
     defaultProducts.filter((product) => product.slug === slug),
   )
 
@@ -94,7 +94,7 @@ export const getProductBySlug = cache(async (slug: string): Promise<ProductView 
 
       const doc = result.docs[0]
       if (!doc) return fallback
-      const [product] = withLocalPhotos([toProduct(doc as unknown as Record<string, unknown>)])
+      const [product] = await withLocalPhotos([toProduct(doc as unknown as Record<string, unknown>)])
       return product ?? fallback
     },
     fallback,
