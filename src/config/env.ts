@@ -21,7 +21,9 @@ const schema = z.object({
 })
 
 const parsed = schema.safeParse({
-  DATABASE_URI: process.env.DATABASE_URI,
+  // Vercel's Neon integration injects DATABASE_URL; accept either name so the
+  // connection works whether it was set by hand or by the integration.
+  DATABASE_URI: process.env.DATABASE_URI || process.env.DATABASE_URL,
   PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
   NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
   BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
