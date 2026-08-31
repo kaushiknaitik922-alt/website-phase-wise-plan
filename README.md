@@ -70,7 +70,7 @@ is gitignored; `.env.example` lists the keys with no values.
 |---|---|
 | `DATABASE_URI` | Neon pooled connection string |
 | `PAYLOAD_SECRET` | Signing admin sessions (32+ random characters) |
-| `NEXT_PUBLIC_SERVER_URL` | Canonical URLs, sitemap, OG tags |
+| `NEXT_PUBLIC_SERVER_URL` | Canonical URLs, sitemap, OG tags — `https://shrilakhdatarindustries.in` |
 | `BLOB_READ_WRITE_TOKEN` | Uploading images to Vercel Blob |
 | `RESEND_API_KEY` | Sending the enquiry notification |
 | `ENQUIRY_TO_EMAIL` | Where enquiries are emailed |
@@ -92,11 +92,14 @@ default content.
 3. **Resend** — verify the sending domain, create an API key, set
    `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL`.
 4. **Vercel project** — import this repository, add every variable above
-   (`NEXT_PUBLIC_SERVER_URL` is the final domain, no trailing slash), deploy.
+   (`NEXT_PUBLIC_SERVER_URL` is `https://shrilakhdatarindustries.in`, no
+   trailing slash), deploy.
 5. **First run** — with the production values in `.env.local`, run
    `SEED_ADMIN_EMAIL=… SEED_ADMIN_PASSWORD=… npm run seed` once against the
    production database, then sign in at `/admin` and change the password.
-6. **Domain** — point the domain at Vercel and update `NEXT_PUBLIC_SERVER_URL`.
+6. **Domain** — point `shrilakhdatarindustries.in` at Vercel, and add
+   `www.shrilakhdatarindustries.in` as a redirect to it so only one address is
+   indexed.
 
 Payload creates and migrates its own tables. In development the schema is
 pushed automatically; for production, generate a migration with
