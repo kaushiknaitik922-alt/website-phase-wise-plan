@@ -19,7 +19,7 @@ import { richTextToPlainText } from '@/lib/lexical'
 import { breadcrumbJsonLd, buildMetadata, productJsonLd } from '@/lib/seo'
 import { cn, formatPhone, telHref } from '@/lib/utils'
 import { productEnquiryMessage, whatsappHref } from '@/lib/whatsapp'
-import { isPortrait } from '@/server/product-photos'
+import { HERO_ASPECT, objectFitFor } from '@/server/product-photos'
 import {
   getProductBySlug,
   getProducts,
@@ -99,7 +99,7 @@ export default async function ProductPage({ params }: Params) {
               <figure
                 className={cn(
                   'relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-line shadow-card',
-                  isPortrait(product.heroImage) && 'bg-surface',
+                  objectFitFor(product.heroImage, HERO_ASPECT) === 'contain' && 'bg-surface',
                 )}
               >
                 <Image
@@ -109,7 +109,9 @@ export default async function ProductPage({ params }: Params) {
                   priority
                   sizes="(min-width: 1024px) 62vw, 100vw"
                   className={cn(
-                    isPortrait(product.heroImage) ? 'object-contain p-4' : 'object-cover',
+                    objectFitFor(product.heroImage, HERO_ASPECT) === 'contain'
+                      ? 'object-contain p-4'
+                      : 'object-cover',
                   )}
                 />
               </figure>

@@ -66,9 +66,24 @@ export const withLocalPhotos = async (products: ProductView[]): Promise<ProductV
   )
 
 /**
- * A photograph taller than it is wide has to be shown whole rather than
- * cropped to a landscape frame — a tall product loses its head and feet
- * otherwise.
+ * How a photograph should sit in a fixed frame.
+ *
+ * Filling the frame crops whatever does not fit, which is fine when the
+ * photograph is roughly the frame's shape and ruinous when it is not — a tall
+ * bottle loses its cap and base, a wide workshop shot loses its subject. So a
+ * photograph that is close to the frame's proportions fills it, and one that
+ * is not is shown whole instead.
  */
-export const isPortrait = (image: ImageView): boolean =>
-  Boolean(image?.width && image?.height && image.height > image.width)
+export const objectFitFor = (
+  image: ImageView,
+  frameAspect: number,
+  tolerance = 0.15,
+): 'cover' | 'contain' => {
+  if (!image?.width || !image?.height) return 'cover'
+  const drift = Math.abs(image.width / image.height - frameAspect) / frameAspect
+  return drift > tolerance ? 'contain' : 'cover'
+}
+
+/** The frames photographs are shown in. */
+export const HERO_ASPECT = 16 / 10
+export const CARD_ASPECT = 4 / 3

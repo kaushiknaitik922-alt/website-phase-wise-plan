@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Icon } from '@/components/ui/Icon'
 import { ColourSwatches } from '@/components/product/ColourSwatches'
 import { cn } from '@/lib/utils'
-import { isPortrait } from '@/server/product-photos'
+import { CARD_ASPECT, objectFitFor } from '@/server/product-photos'
 import type { ProductView } from '@/types/content'
 
 export function ProductCard({ product }: { product: ProductView }) {
@@ -21,8 +21,9 @@ export function ProductCard({ product }: { product: ProductView }) {
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className={cn(
               'transition-transform duration-300 group-hover:scale-[1.03]',
-              // A tall product would lose its top and bottom to a landscape crop.
-              isPortrait(product.heroImage) ? 'object-contain p-3' : 'object-cover',
+              objectFitFor(product.heroImage, CARD_ASPECT) === 'contain'
+                ? 'object-contain p-3'
+                : 'object-cover',
             )}
           />
         ) : (
