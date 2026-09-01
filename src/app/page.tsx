@@ -10,8 +10,13 @@ import { getSiteSettings } from "@/lib/data/siteSettings";
 import { getFeaturedDecorationServices } from "@/lib/data/decorationServices";
 import { getFeaturedGalleryItems } from "@/lib/data/galleryItems";
 
+// No `title` here on purpose: Next.js only applies the root layout's
+// "%s | Saini Phool Bhandar" template to a *child* segment's title, not to
+// the root "/" page itself — so a literal string here would render as a
+// bare, unbranded browser-tab title instead of being templated. Omitting it
+// lets the root layout's `title.default` (the full, keyword-rich brand
+// title) take over, which is also the better SEO title for the homepage.
 export const metadata: Metadata = {
-  title: "Home",
   description:
     "Sonipat ki teen-peedhi purani flower shop — fresh flowers, bouquets aur car/haldi/room decoration. Near Gur Mandi, Sonipat.",
 };
