@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Shri Lakhdatar Industries">
+  <rect width="64" height="64" rx="12" fill="#1C3557"/>
+  <path d="M12 46V30l8 5v-5l8 5v-7l8 5v-5l8 5v13z" fill="#4A8B2C"/>
+  <text x="32" y="24" font-family="Barlow, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">SL</text>
+</svg>
