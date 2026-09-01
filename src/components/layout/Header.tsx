@@ -29,7 +29,7 @@ export function Header({ siteSettings }: { siteSettings: SiteSettings }) {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 bg-warm-white/95 backdrop-blur supports-[backdrop-filter]:bg-warm-white/80 border-b border-border">
+    <header className="sticky top-0 z-40 bg-warm-white border-b border-border">
       <div className="container-content flex h-16 md:h-20 items-center justify-between">
         <Link
           href="/"
