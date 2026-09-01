@@ -10,7 +10,10 @@
     "typecheck": "tsc --noEmit",
     "payload": "payload",
     "seed": "tsx src/scripts/seed.ts",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "vercel-build": "payload migrate && next build",
+    "migrate": "payload migrate",
+    "migrate:create": "payload migrate:create"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.88.0",

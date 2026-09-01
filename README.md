@@ -57,6 +57,7 @@ Useful scripts:
 |---|---|
 | `npm run dev` | Development server |
 | `npm run build` / `npm start` | Production build and server |
+| `npm run migrate` | Bring the database schema up to date |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run seed` | Seed CMS content (and optionally the first admin user) |
 | `npm run generate:types` | Regenerate `src/types/payload-types.ts` after CMS changes |
@@ -94,17 +95,31 @@ default content.
 4. **Vercel project** — import this repository, add every variable above
    (`NEXT_PUBLIC_SERVER_URL` is `https://shrilakhdatarindustries.in`, no
    trailing slash), deploy.
-5. **First run** — with the production values in `.env.local`, run
-   `SEED_ADMIN_EMAIL=… SEED_ADMIN_PASSWORD=… npm run seed` once against the
-   production database, then sign in at `/admin` and change the password.
+5. **First admin user** — open `/admin` on the deployed site. With no users in
+   the database yet, Payload asks you to create the first one right there.
 6. **Domain** — point `shrilakhdatarindustries.in` at Vercel, and add
    `www.shrilakhdatarindustries.in` as a redirect to it so only one address is
    indexed.
 
-Payload creates and migrates its own tables. In development the schema is
-pushed automatically; for production, generate a migration with
-`npx payload migrate:create` and run `npx payload migrate` as part of the
-release.
+### The database schema
+
+`src/migrations` holds the schema. Vercel runs `vercel-build`
+(`payload migrate && next build`) in place of `build`, so every deploy brings
+the database up to date before the site is built — nothing to run by hand, and
+a redeploy skips migrations that have already run.
+
+If a deploy ever fails with *relation … does not exist*, Vercel did not pick up
+that script: set the Build Command in the project settings to
+`npm run vercel-build`.
+
+In development the schema is pushed automatically instead. After changing a
+collection or global, generate a migration with `npm run migrate:create <name>`
+and commit it.
+
+**Seeding is optional.** The site renders from its built-in defaults and the
+enquiry form works as soon as the schema exists. Run `npm run seed` when you
+want the CMS pre-filled with that same content so it can be edited from
+`/admin` rather than starting from empty fields.
 
 ## Editing content
 
