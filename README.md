@@ -38,11 +38,13 @@ needed:
 - `saveEnquiry()` (`src/lib/data/enquiries.ts`) → Payload `enquiries` collection (Neon-backed)
 
 The **enquiry form is fully functional today**: `POST /api/enquiry` validates
-input, persists it (JSON file under `.data/`, gitignored — swap for the real
-Neon-backed collection later), and attempts an owner-notification email via
-Resend (`src/lib/resend.ts`) if `RESEND_API_KEY` + `OWNER_NOTIFICATION_EMAIL`
-are set in `.env`; without them it just logs and skips, exactly as
-`WEBSITE_ARCHITECTURE.md` intends ("an email failure never blocks the
+input, persists it (JSON file under the OS temp dir — deliberately not the
+project directory, since that's read-only on serverless platforms like
+Vercel; swap for the real Neon-backed collection later), and attempts an
+owner-notification email via Resend (`src/lib/resend.ts`) if
+`RESEND_API_KEY` + `OWNER_NOTIFICATION_EMAIL` are set in `.env`; without them
+it just logs and skips, exactly as `WEBSITE_ARCHITECTURE.md` intends ("an
+email failure never blocks the
 enquiry from being saved").
 
 **Images**: real shop/decoration photography must come from the owner via

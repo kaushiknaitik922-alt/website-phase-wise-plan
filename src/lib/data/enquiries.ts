@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import type { EnquiryInput } from "@/lib/types";
 
@@ -11,10 +12,15 @@ import type { EnquiryInput } from "@/lib/types";
  * `payload.create({ collection: 'enquiries', data })` call is the only
  * change needed to move to the real Neon-backed collection later.
  *
- * Note: on a serverless platform (e.g. Vercel) the filesystem is not
- * persistent between invocations — this is the same limitation
- * WEBSITE_ARCHITECTURE.md notes for image uploads, which is why that doc
- * specifies Neon Postgres (not disk) for `enquiries` in production.
+ * Storage location is deliberately `os.tmpdir()`, not `process.cwd()`:
+ * serverless platforms (Vercel included) ship the deployment as a
+ * read-only filesystem — only `/tmp` (what `os.tmpdir()` resolves to) is
+ * writable, and even that is ephemeral per instance/cold start. That
+ * ephemerality is the same limitation WEBSITE_ARCHITECTURE.md notes for
+ * image uploads, which is why that doc specifies Neon Postgres (not disk)
+ * for `enquiries` in production — until that migration, the owner
+ * notification email (src/lib/resend.ts) is the durable record of a
+ * submission, with this file as a same-instance convenience only.
  */
 
 export interface StoredEnquiry extends EnquiryInput {
@@ -23,7 +29,7 @@ export interface StoredEnquiry extends EnquiryInput {
   createdAt: string;
 }
 
-const DATA_DIR = path.join(process.cwd(), ".data");
+const DATA_DIR = path.join(os.tmpdir(), "saini-phool-bhandar");
 const DATA_FILE = path.join(DATA_DIR, "enquiries.json");
 
 async function readAll(): Promise<StoredEnquiry[]> {
