@@ -30,7 +30,7 @@ specification table is hidden until real values are entered
 ## Assets and domain
 
 8. Logo file — SVG or high-resolution PNG (Admin → Site Settings → Logo).
-9. ~~Domain name~~ — **answered: `shrilakhdatar.in`**. Set it as
+9. ~~Domain name~~ — **answered: `shrilakhdatarindustries.in`**. Set it as
    `NEXT_PUBLIC_SERVER_URL` at deploy time; nothing in the code hardcodes it.
 10. Real factory and product photographs. Until they arrive the site uses
     colour swatches and plain sections rather than stock imagery.

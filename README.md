@@ -71,7 +71,7 @@ is gitignored; `.env.example` lists the keys with no values.
 |---|---|
 | `DATABASE_URI` | Neon pooled connection string |
 | `PAYLOAD_SECRET` | Signing admin sessions (32+ random characters) |
-| `NEXT_PUBLIC_SERVER_URL` | Canonical URLs, sitemap, OG tags — `https://shrilakhdatar.in` |
+| `NEXT_PUBLIC_SERVER_URL` | Canonical URLs, sitemap, OG tags — `https://shrilakhdatarindustries.in` |
 | `BLOB_READ_WRITE_TOKEN` | Uploading images to Vercel Blob |
 | `RESEND_API_KEY` | Sending the enquiry notification |
 | `ENQUIRY_TO_EMAIL` | Where enquiries are emailed |
@@ -93,12 +93,12 @@ default content.
 3. **Resend** — verify the sending domain, create an API key, set
    `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL`.
 4. **Vercel project** — import this repository, add every variable above
-   (`NEXT_PUBLIC_SERVER_URL` is `https://shrilakhdatar.in`, no
+   (`NEXT_PUBLIC_SERVER_URL` is `https://shrilakhdatarindustries.in`, no
    trailing slash), deploy.
 5. **First admin user** — open `/admin` on the deployed site. With no users in
    the database yet, Payload asks you to create the first one right there.
-6. **Domain** — point `shrilakhdatar.in` at Vercel, and add
-   `www.shrilakhdatar.in` as a redirect to it so only one address is
+6. **Domain** — point `shrilakhdatarindustries.in` at Vercel, and add
+   `www.shrilakhdatarindustries.in` as a redirect to it so only one address is
    indexed.
 
 ### The database schema
