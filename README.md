@@ -74,7 +74,7 @@ is gitignored; `.env.example` lists the keys with no values.
 | `NEXT_PUBLIC_SERVER_URL` | Canonical URLs, sitemap, OG tags — `https://shrilakhdatarindustries.in` |
 | `BLOB_READ_WRITE_TOKEN` | Uploading images to Vercel Blob |
 | `RESEND_API_KEY` | Sending the enquiry notification |
-| `ENQUIRY_TO_EMAIL` | Where enquiries are emailed |
+| `ENQUIRY_TO_EMAIL` | Where enquiries are emailed — one address, or several separated by commas |
 | `ENQUIRY_FROM_EMAIL` | Verified sender address on Resend |
 | `NEXT_PUBLIC_WHATSAPP_PRIMARY` / `_SECONDARY` | WhatsApp links (public by design) |
 

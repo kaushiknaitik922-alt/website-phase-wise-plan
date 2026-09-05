@@ -13,7 +13,12 @@ const schema = z.object({
   NEXT_PUBLIC_SERVER_URL: z.string().url().optional(),
   BLOB_READ_WRITE_TOKEN: z.string().min(1).optional(),
   RESEND_API_KEY: z.string().min(1).optional(),
-  ENQUIRY_TO_EMAIL: z.email().optional(),
+  // One address, or several separated by commas.
+  ENQUIRY_TO_EMAIL: z
+    .string()
+    .transform((value) => value.split(',').map((part) => part.trim()).filter(Boolean))
+    .pipe(z.array(z.email()).min(1))
+    .optional(),
   ENQUIRY_FROM_EMAIL: z.string().min(1).optional(),
   NEXT_PUBLIC_WHATSAPP_PRIMARY: z.string().optional(),
   NEXT_PUBLIC_WHATSAPP_SECONDARY: z.string().optional(),
@@ -57,7 +62,9 @@ export const CMS_ENV_KEYS = ['DATABASE_URI', 'PAYLOAD_SECRET'] as const
 
 export const hasDatabase = Boolean(env.DATABASE_URI && env.PAYLOAD_SECRET)
 export const hasBlobStorage = Boolean(env.BLOB_READ_WRITE_TOKEN)
-export const hasEmail = Boolean(env.RESEND_API_KEY && env.ENQUIRY_TO_EMAIL && env.ENQUIRY_FROM_EMAIL)
+export const hasEmail = Boolean(
+  env.RESEND_API_KEY && env.ENQUIRY_TO_EMAIL?.length && env.ENQUIRY_FROM_EMAIL,
+)
 
 /** Absolute site URL, used for canonical links, sitemap and OG tags. */
 export const serverUrl =
