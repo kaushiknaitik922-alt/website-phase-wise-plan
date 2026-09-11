@@ -24,8 +24,10 @@ specification table is hidden until real values are entered
    (fields exist, left blank).
 6. Full factory address with pincode, and the exact Google Maps location
    (Admin → Site Settings → Contact → Address lines, Google Maps embed URL).
-7. Which email address enquiries should be sent to, and whether an official
-   business email exists (`ENQUIRY_TO_EMAIL` environment variable).
+7. ~~Which email address enquiries should be sent to~~ — **answered:**
+   `kaushiknaitik922@gmail.com` and `sanjay.sharma60393@gmail.com`, set as
+   `ENQUIRY_TO_EMAIL`. Still open: whether an official business email exists
+   that should replace them.
 
 ## Assets and domain
 
