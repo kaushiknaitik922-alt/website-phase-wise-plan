@@ -239,7 +239,7 @@ export const defaultProducts: ProductView[] = [
     overview:
       'Recycled PP granules are our core product. Factories send us their PP waste — trimmings, rejected parts and leftover pieces — and we sort, wash, grind and granulate that material at our own unit in Bawana.\n\nThe result is a granule that plastic product manufacturers use as raw material in place of, or alongside, virgin PP. Colour separation is done at the sorting stage, which is what keeps each colour batch consistent.',
     packingSupply:
-      'Supplied in bulk to B2B buyers. Packing, minimum order quantity and dispatch are confirmed at the time of quoting — send us your requirement and we will share the details along with the price.',
+      'Supplied in 25 kg bags, with a minimum order of 500 kg. Dispatch is arranged at the time of quoting — send us your requirement and we will share the details along with the price.',
     colours: [
       { name: 'Natural', hexCode: '#E8E4DC' },
       { name: 'Blue', hexCode: '#1F4E8C' },
@@ -249,7 +249,11 @@ export const defaultProducts: ProductView[] = [
       { name: 'Dark Grey', hexCode: '#6B7075' },
       { name: 'Red', hexCode: '#B32424' },
     ],
-    specifications: [],
+    specifications: [
+      { label: 'Grade', value: 'Recycled — for film and moulding' },
+      { label: 'Packing', value: '25 kg bags' },
+      { label: 'Minimum order', value: '500 kg' },
+    ],
     applications: [
       { application: 'Plastic files and folders' },
       { application: 'Jute lamination' },
@@ -275,14 +279,17 @@ export const defaultProducts: ProductView[] = [
     overview:
       'Our HDPE sheets are used most often as fender lining on commercial vehicles, where they sit between the body and the road spray and protect the metal from rust.\n\nThe same sheets are used for long-term permanent installations such as house gates, where they typically stay in service for around two and a half to three and a half years depending on exposure and usage.',
     packingSupply:
-      'Supplied in bulk to B2B buyers. Available thickness, sheet size and minimum order are confirmed at the time of quoting — tell us the application and we will advise what fits.',
+      'Supplied in bulk to B2B buyers, with a minimum order of 200 kg. Sheet size is confirmed at the time of quoting — tell us the application and we will advise what fits.',
     colours: [
       { name: 'Blue', hexCode: '#1F4E8C' },
       { name: 'Black', hexCode: '#1A1A1A' },
       { name: 'White', hexCode: '#F2F2F2' },
       { name: 'Green', hexCode: '#2E7D32' },
     ],
-    specifications: [],
+    specifications: [
+      { label: 'Thickness', value: '0.1 mm to 1.8 mm' },
+      { label: 'Minimum order', value: '200 kg' },
+    ],
     applications: [
       { application: 'Commercial vehicle fender lining', note: 'Protects the body from rust' },
       { application: 'Car and vehicle accessory fabrication' },
