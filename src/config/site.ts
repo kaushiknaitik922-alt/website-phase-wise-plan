@@ -5,10 +5,14 @@
  * default. Content that the client can edit lives in the CMS — these values are
  * the fallback used before the CMS has been populated.
  */
+const ESTABLISHED_YEAR = 2011
+
 export const site = {
   companyName: 'Shri Lakhdatar Industries',
   tagline: 'B2B Plastic Manufacturing & Recycling',
-  experienceYears: 15,
+  establishedYear: ESTABLISHED_YEAR,
+  // Counted from the founding year so the figure never goes stale.
+  experienceYears: new Date().getFullYear() - ESTABLISHED_YEAR,
   phonePrimary: '8587060393',
   phoneSecondary: '8383044264',
   whatsappPrimary: '8587060393',

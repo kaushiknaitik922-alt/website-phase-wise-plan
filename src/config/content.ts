@@ -239,7 +239,7 @@ export const defaultProducts: ProductView[] = [
     overview:
       'Recycled PP granules are our core product. Factories send us their PP waste — trimmings, rejected parts and leftover pieces — and we sort, wash, grind and granulate that material at our own unit in Bawana.\n\nThe result is a granule that plastic product manufacturers use as raw material in place of, or alongside, virgin PP. Colour separation is done at the sorting stage, which is what keeps each colour batch consistent.',
     packingSupply:
-      'Supplied in 25 kg bags, with a minimum order of 500 kg. Dispatch is arranged at the time of quoting — send us your requirement and we will share the details along with the price.',
+      'Supplied in 25 kg bags, with a minimum order of 500 kg. Transport is arranged case by case — call us with your location and quantity and we will work it out. Samples are sent for testing before you commit to an order.',
     colours: [
       { name: 'Natural', hexCode: '#E8E4DC' },
       { name: 'Blue', hexCode: '#1F4E8C' },
@@ -279,7 +279,7 @@ export const defaultProducts: ProductView[] = [
     overview:
       'Our HDPE sheets are used most often as fender lining on commercial vehicles, where they sit between the body and the road spray and protect the metal from rust.\n\nThe same sheets are used for long-term permanent installations such as house gates, where they typically stay in service for around two and a half to three and a half years depending on exposure and usage.',
     packingSupply:
-      'Supplied in bulk to B2B buyers, with a minimum order of 200 kg. Sheet size is confirmed at the time of quoting — tell us the application and we will advise what fits.',
+      'Supplied in packets, with a minimum order of 200 kg. Sheet size is confirmed at the time of quoting — tell us the application and we will advise what fits. Transport is arranged case by case — call us with your location and quantity and we will work it out. Samples are sent for testing before you commit to an order.',
     colours: [
       { name: 'Blue', hexCode: '#1F4E8C' },
       { name: 'Black', hexCode: '#1A1A1A' },
@@ -288,6 +288,7 @@ export const defaultProducts: ProductView[] = [
     ],
     specifications: [
       { label: 'Thickness', value: '0.1 mm to 1.8 mm' },
+      { label: 'Packing', value: 'Packets' },
       { label: 'Minimum order', value: '200 kg' },
     ],
     applications: [
@@ -314,7 +315,7 @@ export const defaultProducts: ProductView[] = [
     overview:
       'These are commercial RO filter housing bottles. The filter cartridge sits inside the housing; water passes through it and is stored in the RO unit.\n\nThe standard combination we supply is a blue bottle with a black cap. They are used in commercial installations rather than household units.',
     packingSupply:
-      'Supplied in bulk to B2B buyers. Sizes, thread and port options and minimum order are confirmed at the time of quoting.',
+      'Supplied in bulk to B2B buyers. Sizes, thread and port options and minimum order are confirmed at the time of quoting. Transport is arranged case by case — call us with your location and quantity and we will work it out. Samples are sent for testing before you commit to an order.',
     colours: [
       { name: 'Blue (bottle)', hexCode: '#1F4E8C' },
       { name: 'Black (cap)', hexCode: '#1A1A1A' },
