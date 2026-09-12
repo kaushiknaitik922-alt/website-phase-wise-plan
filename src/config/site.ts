@@ -15,7 +15,8 @@ export const site = {
   whatsappSecondary: '8383044264',
   email: '',
   addressLines: ['Sector 5, Bawana', 'New Delhi'],
-  googleMapsEmbedUrl: '',
+  googleMapsEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3496.2756531935347!2d77.07156167424617!3d28.80085827557323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390da9d84f75e7f1%3A0xab9786debd956a5!2sShri%20Lakhdatar%20Industries!5e0!3m2!1sen!2sin!4v1789235680372!5m2!1sen!2sin',
   hoursSummary: 'Mon–Fri, Sun · 9 AM–9 PM',
   supplyAreas: [
     'Delhi',
