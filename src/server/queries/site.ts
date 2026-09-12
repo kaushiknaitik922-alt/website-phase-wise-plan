@@ -6,10 +6,21 @@ import type { SiteSettingsView, WorkingHoursView } from '@/types/content'
 
 import { orDefault, toImage, toStringList } from './mappers'
 
+/**
+ * The client's logo, served from `public/`. Blob storage is optional, so the
+ * mark ships with the build and a CMS upload simply overrides it.
+ */
+const brandLogo = {
+  url: '/brand/logo-mark.png',
+  alt: `${site.companyName} logo`,
+  width: 512,
+  height: 512,
+}
+
 const fallbackSettings: SiteSettingsView = {
   companyName: site.companyName,
   tagline: site.tagline,
-  logo: null,
+  logo: brandLogo,
   experienceYears: site.experienceYears,
   establishedYear: site.establishedYear,
   legalName: null,
@@ -40,7 +51,7 @@ export const getSiteSettings = cache(
         return {
           companyName: orDefault(doc.companyName as string, fallbackSettings.companyName),
           tagline: orDefault(doc.tagline as string, fallbackSettings.tagline),
-          logo: toImage(doc.logo),
+          logo: toImage(doc.logo) ?? brandLogo,
           experienceYears: orDefault(
             doc.experienceYears as number,
             fallbackSettings.experienceYears,
