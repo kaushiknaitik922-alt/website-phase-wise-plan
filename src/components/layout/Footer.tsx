@@ -33,13 +33,17 @@ export function Footer({
         <div>
           <div className="flex items-center gap-3">
             {settings.logo ? (
-              <Image
-                src={settings.logo.url}
-                alt={settings.logo.alt || settings.companyName}
-                width={48}
-                height={48}
-                className="h-11 w-auto object-contain"
-              />
+              // The mark is drawn in navy and green, so it needs a light tile
+              // to read against the dark footer.
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-white p-1">
+                <Image
+                  src={settings.logo.url}
+                  alt={settings.logo.alt || settings.companyName}
+                  width={44}
+                  height={44}
+                  className="h-full w-auto object-contain"
+                />
+              </span>
             ) : (
               <span
                 aria-hidden="true"
