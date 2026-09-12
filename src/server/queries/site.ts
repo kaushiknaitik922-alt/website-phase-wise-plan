@@ -11,7 +11,7 @@ const fallbackSettings: SiteSettingsView = {
   tagline: site.tagline,
   logo: null,
   experienceYears: site.experienceYears,
-  establishedYear: null,
+  establishedYear: site.establishedYear,
   legalName: null,
   gstNumber: null,
   footerAbout: site.footerAbout,
