@@ -56,7 +56,10 @@ export const getSiteSettings = cache(
             doc.experienceYears as number,
             fallbackSettings.experienceYears,
           ),
-          establishedYear: (doc.establishedYear as number) ?? null,
+          establishedYear: orDefault(
+            doc.establishedYear as number,
+            fallbackSettings.establishedYear ?? null,
+          ),
           legalName: (doc.legalName as string) ?? null,
           gstNumber: (doc.gstNumber as string) ?? null,
           footerAbout: orDefault(doc.footerAbout as string, fallbackSettings.footerAbout),
@@ -72,7 +75,10 @@ export const getSiteSettings = cache(
           ),
           email: (doc.email as string) ?? fallbackSettings.email,
           addressLines: toStringList(doc.addressLines, 'line', fallbackSettings.addressLines),
-          googleMapsEmbedUrl: (doc.googleMapsEmbedUrl as string) ?? null,
+          googleMapsEmbedUrl: orDefault(
+            doc.googleMapsEmbedUrl as string,
+            fallbackSettings.googleMapsEmbedUrl ?? null,
+          ),
           supplyAreas: toStringList(doc.supplyAreas, 'area', fallbackSettings.supplyAreas),
           defaultSeo: {
             metaTitle:
