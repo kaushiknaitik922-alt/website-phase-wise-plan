@@ -1,6 +1,7 @@
 import type {
   AboutPageView,
   ContactPageView,
+  FaqItem,
   HomePageView,
   ProcessPageView,
   ProductView,
@@ -335,3 +336,53 @@ export const defaultProducts: ProductView[] = [
     isFeatured: true,
   },
 ].map((product) => ({ ...product, heroImage: null }))
+
+/**
+ * Buyer questions, answered from what is already published on the product
+ * pages. Nothing here states anything the client has not confirmed.
+ */
+export const defaultProductFaqs: FaqItem[] = [
+  {
+    question: 'What is the minimum order quantity?',
+    answer:
+      'Recycled PP granules start at 500 kg and HDPE sheets at 200 kg. For RO filter housing bottles the minimum order is confirmed at the time of quoting.',
+  },
+  {
+    question: 'How is the material packed?',
+    answer:
+      'PP granules are supplied in 25 kg bags. HDPE sheets are supplied in packets. Sheet size is confirmed when we quote, so tell us the application and we will advise what fits.',
+  },
+  {
+    question: 'Do you send samples before an order?',
+    answer:
+      'Yes. We send samples for testing so you can judge the material on your own line before committing to an order.',
+  },
+  {
+    question: 'Do you arrange transport?',
+    answer:
+      'Transport is arranged case by case. Call us with your location and quantity and we will work it out.',
+  },
+  {
+    question: 'Which areas do you supply to?',
+    answer: `We supply across ${site.supplyAreas.slice(0, -1).join(', ')} and ${site.supplyAreas.slice(-1)[0].toLowerCase()}.`,
+  },
+  {
+    question: 'What colours are available in PP granules?',
+    answer:
+      'Natural, blue, black, green, light grey, dark grey and red. Colour separation is done at the sorting stage, which is what keeps each colour batch consistent.',
+  },
+  {
+    question: 'What thickness do the HDPE sheets come in?',
+    answer:
+      'From 0.1 mm to 1.8 mm, in blue, black, white and green. They are used most often as fender lining on commercial vehicles and for long-term permanent installations.',
+  },
+  {
+    question: 'Is recycled material dependable enough for production?',
+    answer:
+      'Recycled material gets a bad name when input is mixed and the process is rushed. Sorting the waste properly, washing it before it is granulated and keeping colours separate is what makes a batch behave predictably in a moulding machine. We cannot promise that recycled granules match virgin material in every application — we tell you honestly what a batch is suited to, and send a sample so you can judge it yourself.',
+  },
+  {
+    question: 'How do I get a quote?',
+    answer: `Send your requirement through the enquiry form on the contact page, or call or WhatsApp us on ${site.phonePrimary} or ${site.phoneSecondary}. Tell us the product, the colour and the quantity you need.`,
+  },
+]
