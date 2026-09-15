@@ -7,19 +7,20 @@ import { ProductGrid } from '@/components/sections/ProductGrid'
 import { SupplyArea } from '@/components/sections/SupplyArea'
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs'
 import { JsonLd } from '@/components/ui/JsonLd'
-import { organizationJsonLd } from '@/lib/seo'
-import { getFeaturedProducts, getHomePage, getSiteSettings } from '@/server/queries'
+import { localBusinessJsonLd } from '@/lib/seo'
+import { getFeaturedProducts, getHomePage, getSiteSettings, getWorkingHours } from '@/server/queries'
 
 export default async function HomePage() {
-  const [home, products, settings] = await Promise.all([
+  const [home, products, settings, hours] = await Promise.all([
     getHomePage(),
     getFeaturedProducts(),
     getSiteSettings(),
+    getWorkingHours(),
   ])
 
   return (
     <>
-      <JsonLd data={organizationJsonLd(settings)} />
+      <JsonLd data={localBusinessJsonLd(settings, hours)} />
       <Hero hero={home.hero} />
       <FeatureCards cards={home.featureCards} />
       <AboutSnippet content={home.aboutSnippet} experienceYears={settings.experienceYears} />

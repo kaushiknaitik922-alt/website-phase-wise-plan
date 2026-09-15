@@ -76,6 +76,11 @@ export type WorkingDay = {
   closeTime: string
 }
 
+export type FaqItem = {
+  question: string
+  answer: string
+}
+
 export type WorkingHoursView = {
   days: WorkingDay[]
   note?: string | null

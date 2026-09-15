@@ -7,7 +7,8 @@ import { WorkingHoursTable } from '@/components/contact/WorkingHoursTable'
 import { PageHero } from '@/components/sections/PageHero'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
-import { buildMetadata } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { buildMetadata, localBusinessJsonLd } from '@/lib/seo'
 import { formatPhone, telHref } from '@/lib/utils'
 import { productEnquiryMessage, whatsappHref } from '@/lib/whatsapp'
 import { getContactPage, getProducts, getSiteSettings, getWorkingHours } from '@/server/queries'
@@ -50,6 +51,7 @@ export default async function ContactPage({ searchParams }: SearchParams) {
 
   return (
     <>
+      <JsonLd data={localBusinessJsonLd(settings, hours)} />
       <PageHero
         hero={contact.hero}
         breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}

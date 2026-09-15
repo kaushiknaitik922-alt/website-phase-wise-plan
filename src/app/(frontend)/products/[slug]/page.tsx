@@ -66,6 +66,7 @@ export default async function ProductPage({ params }: Params) {
           description: product.shortDescription || richTextToPlainText(product.overview, 300),
           slug: product.slug,
           image: product.heroImage?.url,
+          specifications: product.specifications,
           settings,
         })}
       />
