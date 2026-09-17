@@ -1,33 +1,40 @@
+import Link from 'next/link'
+
 import styles from './label.module.css'
 
 export function Nav() {
   return (
     <header className={styles.nav}>
-      <a href="#top" className={styles.navWordmark}>
+      <Link href="/label-demo" className={styles.navWordmark}>
         GHOST NOTE<span className={styles.navDot}>.</span>
-      </a>
+      </Link>
       <nav>
         <ul className={styles.navLinks}>
           <li>
-            <a className={styles.navLink} href="#releases">
+            <Link className={styles.navLink} href="/label-demo/releases">
               Catalogue
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.navLink} href="#roster">
+            <Link className={styles.navLink} href="/label-demo/roster">
               Roster
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.navLink} href="#dates">
+            <Link className={styles.navLink} href="/label-demo/about">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.navLink} href="/label-demo#dates">
               Dates
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
-      <a className={styles.navCta} href="#dates">
-        Listen
-      </a>
+      <Link className={styles.navCta} href="/label-demo/contact">
+        Contact
+      </Link>
     </header>
   )
 }

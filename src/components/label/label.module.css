@@ -626,6 +626,13 @@
   letter-spacing: -0.02em;
   flex: 1;
   order: 1;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.rosterName:hover {
+  color: var(--amber);
 }
 
 .rosterCount {
@@ -694,12 +701,22 @@
   color: var(--ink-2);
 }
 
-.table td.first {
+.table .first {
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
   font-size: 16px;
   color: var(--ink);
   letter-spacing: -0.01em;
+}
+
+.table a.first {
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.table a.first:hover {
+  color: var(--amber);
 }
 
 @media (max-width: 640px) {
@@ -817,6 +834,375 @@
   margin: 0;
   padding: 0 16px;
   transform: translateY(26%);
+}
+
+/* ---------- Sub-page header ---------- */
+
+.subHero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 140px 20px 60px;
+}
+
+@media (min-width: 640px) {
+  .subHero {
+    padding: 150px 28px 70px;
+  }
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--amber);
+}
+
+/* ---------- Artist portrait (shared duotone treatment) ---------- */
+
+.artistPortrait {
+  position: relative;
+  overflow: hidden;
+  background: var(--ground-2);
+}
+
+.artistPortrait img {
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.artistPortrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+.artistPortrait[data-accent='amber']::after {
+  background: linear-gradient(160deg, var(--amber), transparent 72%);
+}
+
+.artistPortrait[data-accent='teal']::after {
+  background: linear-gradient(160deg, var(--teal), transparent 72%);
+}
+
+/* ---------- Roster grid (full page) ---------- */
+
+.rosterGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 120px;
+}
+
+@media (min-width: 640px) {
+  .rosterGrid {
+    padding: 0 28px 140px;
+  }
+}
+
+.rosterGridCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rosterGridImage {
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.rosterGridCard:hover .rosterGridImage {
+  transform: translateY(-4px);
+}
+
+.rosterGridName {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.rosterGridMeta {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* ---------- Catalogue grid (full page) ---------- */
+
+.catalogueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 120px;
+}
+
+@media (min-width: 640px) {
+  .catalogueGrid {
+    padding: 0 28px 140px;
+  }
+}
+
+.catalogueCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 220px;
+  padding: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--hair);
+  border-top: 2px solid var(--hair);
+  background: var(--ground-2);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.catalogueCard:hover {
+  transform: translateY(-4px);
+}
+
+.catalogueCard[data-accent='amber'] {
+  border-top-color: var(--amber);
+}
+
+.catalogueCard[data-accent='teal'] {
+  border-top-color: var(--teal);
+}
+
+/* ---------- Detail pages (artist / release) ---------- */
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 140px;
+}
+
+@media (min-width: 640px) {
+  .detailGrid {
+    padding: 0 28px 140px;
+  }
+}
+
+@media (min-width: 820px) {
+  .detailGrid {
+    grid-template-columns: 300px 1fr;
+    align-items: start;
+  }
+}
+
+.detailImage {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.detailMeta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 20px;
+  margin: 28px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--hair);
+}
+
+.detailMeta dt {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.detailMeta dd {
+  margin: 0;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.detailMeta a {
+  color: var(--ink-2);
+  transition: color 0.2s ease;
+}
+
+.detailMeta a:hover {
+  color: var(--amber);
+}
+
+.trackList {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hair);
+}
+
+.trackRow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hair);
+  font-family: var(--font-sora), sans-serif;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.trackIndex {
+  width: 22px;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.trackTitle {
+  flex: 1;
+  color: var(--ink);
+}
+
+.trackDuration {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.discList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid var(--hair);
+}
+
+.discRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hair);
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.discRow:hover {
+  color: var(--amber);
+}
+
+.discRowTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.discRowMeta {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.valueRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.valueTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.valueBody {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ---------- Contact page ---------- */
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 140px;
+}
+
+@media (min-width: 640px) {
+  .contactGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 28px 140px;
+  }
+}
+
+.contactCard {
+  padding: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--hair);
+  border-top: 2px solid var(--hair);
+}
+
+.contactCard[data-accent='amber'] {
+  border-top-color: var(--amber);
+}
+
+.contactCard[data-accent='teal'] {
+  border-top-color: var(--teal);
+}
+
+.contactCardTitle {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.contactCardBody {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 16px;
 }
 
 /* ---------- Reveal ---------- */

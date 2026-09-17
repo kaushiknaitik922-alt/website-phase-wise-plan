@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import styles from './label.module.css'
 import { Reveal } from './Reveal'
 import { RELEASES } from './data'
@@ -23,8 +25,10 @@ export function DatesTable() {
             <tbody>
               {RELEASES.map((release) => (
                 <tr key={release.code}>
-                  <td className={styles.first} data-label="Release">
-                    {release.title}
+                  <td data-label="Release">
+                    <Link href={`/label-demo/releases/${release.slug}`} className={styles.first}>
+                      {release.title}
+                    </Link>
                   </td>
                   <td data-label="Artist">{release.artist}</td>
                   <td data-label="Format">{release.format}</td>

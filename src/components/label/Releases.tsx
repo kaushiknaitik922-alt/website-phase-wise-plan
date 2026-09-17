@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import styles from './label.module.css'
 import { Deck } from './Deck'
 import { Reveal } from './Reveal'
@@ -15,12 +17,12 @@ export function Releases() {
             sold as a whole side rather than a single.
           </p>
           <div className={styles.releasesActions}>
-            <a href="#roster" className={styles.btnPrimary}>
+            <Link href="/label-demo/releases" className={styles.btnPrimary}>
+              Browse catalogue
+            </Link>
+            <Link href="/label-demo/roster" className={styles.btnGhost}>
               View roster
-            </a>
-            <a href="#dates" className={styles.btnGhost}>
-              Release dates
-            </a>
+            </Link>
           </div>
         </Reveal>
         <Reveal delay={120}>

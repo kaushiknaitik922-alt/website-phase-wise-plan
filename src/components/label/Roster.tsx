@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 import styles from './label.module.css'
 import { Reveal } from './Reveal'
-import { ROSTER } from './data'
+import { ARTISTS } from './data'
 
 export function Roster() {
   return (
@@ -9,9 +11,11 @@ export function Roster() {
         <Reveal className={styles.rosterHead}>
           <p className={styles.kicker}>Roster</p>
         </Reveal>
-        {ROSTER.map((artist) => (
-          <Reveal key={artist.name} className={styles.rosterRow}>
-            <span className={styles.rosterName}>{artist.name}</span>
+        {ARTISTS.map((artist) => (
+          <Reveal key={artist.slug} className={styles.rosterRow}>
+            <Link href={`/label-demo/roster/${artist.slug}`} className={styles.rosterName}>
+              {artist.name}
+            </Link>
             <span className={styles.rosterCount}>{artist.count}</span>
             <span className={styles.rosterTag}>{artist.tag}</span>
           </Reveal>
