@@ -8,8 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // The CMS and the enquiry endpoint have no business in search results.
-        disallow: ['/admin', '/api/'],
+        // The CMS and the enquiry endpoint have no business in search results,
+        // and /label-demo is an unrelated design concept, not part of this site.
+        disallow: ['/admin', '/api/', '/label-demo'],
       },
     ],
     sitemap: `${serverUrl}/sitemap.xml`,
