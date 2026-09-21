@@ -76,6 +76,17 @@ export type WorkingDay = {
   closeTime: string
 }
 
+export type CustomPageView = {
+  title: string
+  slug: string
+  kicker?: string | null
+  subheading?: string | null
+  image: ImageView
+  body: RichTextValue
+  showInFooter: boolean
+  seo?: SeoView
+}
+
 export type FaqItem = {
   question: string
   answer: string

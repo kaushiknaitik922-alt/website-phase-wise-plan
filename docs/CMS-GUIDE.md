@@ -45,6 +45,28 @@ Naya product bhi add kar sakte hain: **Products → Create New**. Slug (URL ka
 hissa) chhota aur simple rakhein, jaise `ldpe-sheets`. Naya product apne aap
 products page, menu aur sitemap mein aa jata hai.
 
+### Pages — nayi page banane ke liye
+
+**Pages → Create New**. Bharna kya hai:
+
+- **Title** — page ka heading, jaise "Gallery" ya "Certifications"
+- **Slug** — URL ka hissa, apne aap ban jata hai. Title "Gallery" hai to address
+  hoga `shrilakhdatarindustries.in/gallery`
+- **Kicker** — heading ke upar chhota label (optional)
+- **Subheading** — heading ke neeche ek-do line (optional)
+- **Image** — upar ek badi photo (optional)
+- **Body** — page ka poora content. Heading, paragraph, list, link — sab lagа
+  sakte hain
+- **Published** — jab tak ye tick nahi hoga, page website par nahi dikhegi.
+  Aaram se likhein, phir tick karein
+- **Show in footer** — tick karne par footer ke Quick Links mein link aa jayega
+
+Page banate hi wo sitemap mein bhi jud jati hai, yani Google ko apne aap pata
+chal jata hai.
+
+Menu (upar wali patti) mein link daalna abhi code se hota hai — uske liye batana
+padega.
+
 ### Enquiries
 
 Website se aayi saari enquiries yahan dikhti hain — naam, phone, product,
@@ -66,11 +88,11 @@ lagayi ja sakti hain.
 
 ## Kya nahi badal sakte (developer chahiye)
 
-- **Bilkul nayi page** banana (jaise "Careers" ya "Gallery") — pages code mein
-  bane hue hain, CMS mein nahi
 - **Design ya layout** badalna — rang, font, section ka kram
+- Home / About / Process / Contact **ka dhancha** badalna (text badal sakte hain,
+  section aage-peeche nahi kar sakte)
 - **FAQ ke sawaal-jawab** — ye abhi code mein hain
-- **Menu** mein naya item jodna
+- **Menu** mein naya item jodna (nayi page footer mein aa sakti hai, menu mein nahi)
 - Enquiry form ke fields badalna
 
 ---

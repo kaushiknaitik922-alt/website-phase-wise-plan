@@ -7,7 +7,7 @@ import { productCategories } from '@/config/site'
 import { formatPhone, telHref } from '@/lib/utils'
 import { hoursSummary } from '@/lib/working-hours'
 import { whatsappHref } from '@/lib/whatsapp'
-import type { SiteSettingsView, WorkingHoursView } from '@/types/content'
+import type { CustomPageView, SiteSettingsView, WorkingHoursView } from '@/types/content'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -21,9 +21,12 @@ const quickLinks = [
 export function Footer({
   settings,
   hours,
+  pages = [],
 }: {
   settings: SiteSettingsView
   hours: WorkingHoursView
+  /** Pages the client added in the CMS and ticked "show in footer". */
+  pages?: CustomPageView[]
 }) {
   const numbers = [settings.phonePrimary, settings.phoneSecondary].filter(Boolean) as string[]
   const whatsapp = settings.whatsappPrimary || settings.phonePrimary
@@ -72,13 +75,15 @@ export function Footer({
             Quick Links
           </h2>
           <ul className="mt-4 space-y-2 text-sm">
-            {quickLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="transition-colors hover:text-green">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {[...quickLinks, ...pages.map((page) => ({ label: page.title, href: `/${page.slug}` }))].map(
+              (link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition-colors hover:text-green">
+                    {link.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
         </div>
 
