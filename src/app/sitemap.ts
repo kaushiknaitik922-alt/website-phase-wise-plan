@@ -1,10 +1,10 @@
 import type { MetadataRoute } from 'next'
 
 import { serverUrl } from '@/config/env'
-import { getProducts } from '@/server/queries'
+import { getCustomPages, getProducts } from '@/server/queries'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await getProducts()
+  const [products, pages] = await Promise.all([getProducts(), getCustomPages()])
   const lastModified = new Date()
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -18,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes,
+    ...pages.map((page) => ({
+      url: `${serverUrl}/${page.slug}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    })),
     ...products.map((product) => ({
       url: `${serverUrl}/products/${product.slug}`,
       lastModified,

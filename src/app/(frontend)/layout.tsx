@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Navbar } from '@/components/layout/Navbar'
 import { TopBar } from '@/components/layout/TopBar'
 import { serverUrl } from '@/config/env'
-import { getSiteSettings, getWorkingHours } from '@/server/queries'
+import { getFooterPages, getSiteSettings, getWorkingHours } from '@/server/queries'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -43,7 +43,11 @@ export const viewport: Viewport = {
 }
 
 export default async function FrontendLayout({ children }: { children: ReactNode }) {
-  const [settings, hours] = await Promise.all([getSiteSettings(), getWorkingHours()])
+  const [settings, hours, footerPages] = await Promise.all([
+    getSiteSettings(),
+    getWorkingHours(),
+    getFooterPages(),
+  ])
 
   return (
     <html lang="en" className={`${inter.variable} ${barlow.variable}`}>
@@ -62,7 +66,7 @@ export default async function FrontendLayout({ children }: { children: ReactNode
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer settings={settings} hours={hours} />
+        <Footer settings={settings} hours={hours} pages={footerPages} />
       </body>
     </html>
   )

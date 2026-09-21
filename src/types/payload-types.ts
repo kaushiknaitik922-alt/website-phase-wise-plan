@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     products: Product;
+    pages: Page;
     enquiries: Enquiry;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,6 +82,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -337,6 +339,71 @@ export interface Product {
   createdAt: string;
 }
 /**
+ * Extra pages you add yourself. The address becomes shrilakhdatarindustries.in/your-slug.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  /**
+   * Used in the page URL. Leave it alone unless you know the page is not live yet.
+   */
+  slug: string;
+  /**
+   * Until this is ticked the page is not on the website.
+   */
+  isPublished?: boolean | null;
+  /**
+   * Add a link to this page in the footer, under Quick Links.
+   */
+  showInFooter?: boolean | null;
+  /**
+   * Small label above the heading. Optional.
+   */
+  kicker?: string | null;
+  /**
+   * One or two lines under the heading. Optional.
+   */
+  subheading?: string | null;
+  image?: (number | null) | Media;
+  /**
+   * The content of the page.
+   */
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Leave blank to use the page heading and description automatically.
+   */
+  seo?: {
+    /**
+     * Around 60 characters works best in Google results.
+     */
+    metaTitle?: string | null;
+    /**
+     * Around 155 characters. Plain, factual sentence about the page.
+     */
+    metaDescription?: string | null;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Enquiries received from the website. Update the status as you follow up.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -397,6 +464,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'enquiries';
@@ -568,6 +639,29 @@ export interface ProductsSelect<T extends boolean = true> {
         buyerType?: T;
         id?: T;
       };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  isPublished?: T;
+  showInFooter?: T;
+  kicker?: T;
+  subheading?: T;
+  image?: T;
+  body?: T;
   seo?:
     | T
     | {

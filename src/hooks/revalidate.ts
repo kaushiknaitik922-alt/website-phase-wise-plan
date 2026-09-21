@@ -30,6 +30,22 @@ export const revalidateProductAfterDelete: CollectionAfterDeleteHook = ({ doc })
   return doc
 }
 
+export const revalidateCustomPage: CollectionAfterChangeHook = ({ doc, previousDoc, req }) => {
+  const slugs = new Set<string>()
+  if (typeof doc?.slug === 'string') slugs.add(doc.slug)
+  if (typeof previousDoc?.slug === 'string') slugs.add(previousDoc.slug)
+
+  // The footer can link these, so every page's cache has to go.
+  revalidate(['/', ...Array.from(slugs, (slug) => `/${slug}`)], ['pages'])
+  req.payload.logger.info(`Revalidated page: ${Array.from(slugs).join(', ')}`)
+  return doc
+}
+
+export const revalidateCustomPageAfterDelete: CollectionAfterDeleteHook = ({ doc }) => {
+  revalidate(['/', `/${doc?.slug}`], ['pages'])
+  return doc
+}
+
 /** Globals that only affect one page. */
 export const revalidateGlobal =
   (paths: string[], tags: string[] = []): GlobalAfterChangeHook =>

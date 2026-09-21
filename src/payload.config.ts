@@ -9,6 +9,7 @@ import sharp from 'sharp'
 
 import { Enquiries } from './collections/Enquiries'
 import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
 import { Products } from './collections/Products'
 import { Users } from './collections/Users'
 import { AboutPage } from './globals/AboutPage'
@@ -52,7 +53,7 @@ export default buildConfig({
       robots: 'noindex, nofollow',
     },
   },
-  collections: [Users, Media, Products, Enquiries],
+  collections: [Users, Media, Products, Pages, Enquiries],
   globals: [SiteSettings, WorkingHours, HomePage, AboutPage, ProcessPage, ContactPage],
   editor: lexicalEditor(),
   secret,
