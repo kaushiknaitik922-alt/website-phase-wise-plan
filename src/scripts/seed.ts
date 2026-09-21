@@ -4,9 +4,14 @@
  *
  *   npm run seed
  *   SEED_ADMIN_EMAIL=you@example.com SEED_ADMIN_PASSWORD='...' npm run seed
+ *   npm run seed -- --if-empty
  *
  * Safe to run more than once: products are matched by slug and updated rather
  * than duplicated, and globals are overwritten with the defaults.
+ *
+ * --if-empty does nothing once the CMS holds any product. The deploy uses it to
+ * fill an empty CMS on the first release without ever overwriting content the
+ * client has since edited.
  */
 import { config as loadEnv } from 'dotenv'
 import { getPayload } from 'payload'
@@ -32,6 +37,15 @@ const run = async () => {
   // Imported lazily so the environment is loaded before the config is read.
   const { default: config } = await import('../payload.config')
   const payload = await getPayload({ config })
+
+  if (process.argv.includes('--if-empty')) {
+    const { totalDocs } = await payload.count({ collection: 'products' })
+    if (totalDocs > 0) {
+      payload.logger.info(`CMS already holds ${totalDocs} products — nothing seeded.`)
+      return
+    }
+    payload.logger.info('CMS is empty — seeding the default content.')
+  }
 
   // --- First admin user -----------------------------------------------------
   const email = process.env.SEED_ADMIN_EMAIL

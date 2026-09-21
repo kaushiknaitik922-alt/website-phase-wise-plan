@@ -11,7 +11,7 @@
     "payload": "payload",
     "seed": "tsx src/scripts/seed.ts",
     "generate:types": "payload generate:types",
-    "vercel-build": "payload migrate && next build",
+    "vercel-build": "payload migrate && tsx src/scripts/seed.ts --if-empty && next build",
     "migrate": "payload migrate",
     "migrate:create": "payload migrate:create"
   },
